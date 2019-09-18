@@ -1,0 +1,220 @@
+body {
+    background-color: #F5F5F5;
+    margin: 5px
+}
+
+#pageID {
+    border-radius: 0;
+}
+
+#kdInput {
+    width: 30%;
+    min-width: 200px;
+}
+
+#multiQueryBox {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 10px;
+    display: none;
+}
+
+
+.imageRender {
+    height: 500px;
+    overflow-y: auto;
+}
+
+#rgbar {
+    width: 92%
+}
+
+.rightImage {
+  border: green solid 2px;
+  margin: 2px;
+}
+
+.wrongImage {
+  border: red solid 2px;
+  margin: 2px;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  margin: 13.8px 0;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #3071a9;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: orange;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -14px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #367ebd;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #3071a9;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #84ffff;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #2a6495;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+input[type=range]::-ms-fill-upper {
+  background: #3071a9;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+input[type=range]::-ms-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #84ffff;
+  cursor: pointer;
+  height: 8.4px;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #3071a9;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #367ebd;
+}
+
+
+.queryImage {
+    cursor: pointer;
+}
+
+#distboard:first-child {
+  margin-left: 0 !important
+}
+
+#gboard {
+    height: 236px;
+    overflow: auto;
+}
+
+.board {
+  height: 900px;
+  width: 100%;
+}
+
+#selectBoard {
+  position: absolute;
+  z-index: 10;
+  display: none;
+}
+
+.ui.horizontal.list:not(.celled)>.item:first-child {
+  margin-left: 1em!important
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+.area {
+  fill: steelblue;
+  clip-path: url(#clip);
+}
+
+.resize path {
+  fill: #fff;
+  fill-opacity: .6;
+  /*stroke: red;*/
+  stroke-width: 1.5px;
+}
+
+.acArc path {
+  fill: #fff;
+  fill-opacity: .6;
+  stroke: red;
+  stroke-width: 1.5px;
+}
+
+.distinct_label {
+  margin: 5px !important
+}
+
+.circleBB {
+  cursor: pointer;
+}
+
+.extent {
+  shape-rendering: crispEdges;
+  fill-opacity: .125;
+}
+
+.lasso:hover {
+    cursor: move;
+}
+
+.lasso path {
+  stroke: rgb(80,80,80);
+  stroke-width:1px;
+}
+
+.lasso .drawn {
+  fill-opacity: .05;
+}
+
+.lasso .loop_close {
+  fill:none;
+  stroke-dasharray: 4, 4;
+}
+
+.lasso .origin {
+  fill:#3399FF;
+  fill-opacity:.5;
+}
