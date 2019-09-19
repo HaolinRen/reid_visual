@@ -6,9 +6,9 @@ from scipy.spatial.distance import cosine
 from graphBase import tlpGraph
 
 
-QUERY_PATH = 'query/'
-GALLERY_PATH = 'bounding_box_test/'
-FEATURES_PATH = 'features/'
+QUERY_PATH = '/net/per920a/export/das14a/satoh-lab/wangz/person_reid/dataset/Market-1501-v15.09.15/query/'
+GALLERY_PATH = '/net/per920a/export/das14a/satoh-lab/wangz/person_reid/dataset/Market-1501-v15.09.15/bounding_box_test/'
+FEATURES_PATH = '/net/per920a/export/das14a/satoh-lab/wangz/person_reid/src/deep-person-reid-master/features/'
 
 MAX_IMAGE_NUM = 100
 
