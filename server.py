@@ -9,6 +9,12 @@ import cgi
 
 PORT_NUMBER = 800
 
+
+QUERY_PATH = '/net/per920a/export/das14a/satoh-lab/wangz/person_reid/dataset/Market-1501-v15.09.15/query/'
+GALLERY_PATH = '/net/per920a/export/das14a/satoh-lab/wangz/person_reid/dataset/Market-1501-v15.09.15/bounding_box_test/'
+FEATURES_PATH = '/net/per920a/export/das14a/satoh-lab/wangz/person_reid/src/deep-person-reid-master/features/'
+
+
 class myHandler(BaseHTTPRequestHandler):
 
 	#Handler for the GET requests

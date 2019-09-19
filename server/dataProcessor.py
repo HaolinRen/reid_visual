@@ -152,11 +152,11 @@ class dataProcessor(object):
 		d = json.loads(req)
 		filePath = QUERY_PATH
 		featurePath = 'mobilenet_xent_market1501.pth.tar.qf.npy'
-		firstPath = '/query/'
+		firstPath = QUERY_PATH
 		if d['type'] == 'gallery':
 			filePath = GALLERY_PATH
 			featurePath = 'mobilenet_xent_market1501.pth.tar.gf.npy'
-			firstPath = '/' + GALLERY_PATH
+			firstPath = GALLERY_PATH
 		
 		filesNameList = listdir(filePath)
 		filesNameList.sort()
@@ -214,7 +214,7 @@ class dataProcessor(object):
 				if len(nl) > 1:
 					if nl[0] not in personDict:
 						personDict[nl[0]] = 0
-						res['/query/' + oneFile] = k
+						res[QUERY_PATH + oneFile] = k
 						if len(res) > MAX_IMAGE_NUM:
 							break
 				k += 1
@@ -230,7 +230,7 @@ class dataProcessor(object):
 				nl = oneFile.split('_')
 				if len(nl) > 1:
 					if nl[0] == req['data']:
-						res['query']['/query/' + oneFile] = k
+						res['query'][QUERY_PATH + oneFile] = k
 				k += 1
 
 			galleryList = listdir(GALLERY_PATH)
@@ -267,7 +267,7 @@ def getDistMatrix():
 	dp = dataProcessor()
 	res = {}
 	featurePath = 'mobilenet_xent_market1501.pth.tar.gf.npy'
-	filesNameList = listdir('../'+GALLERY_PATH)
+	filesNameList = listdir(GALLERY_PATH)
 	filesNameList.sort()
 	temp = []
 	dataArr = dp.loadNumData(featurePath)

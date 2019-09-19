@@ -481,7 +481,6 @@ var simSegment = {
                 })
 
                 for (let one of data) {
-                    console.log(one)
                     if (one.verify) {
                         queryTemp += '<div class="rightImage item"><img class="ui avator image" src="'
                     } else {
