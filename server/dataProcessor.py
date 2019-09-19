@@ -6,9 +6,9 @@ from scipy.spatial.distance import cosine
 from graphBase import tlpGraph
 
 
-QUERY_PATH = '/net/per920a/export/das14a/satoh-lab/wangz/person_reid/dataset/Market-1501-v15.09.15/query/'
-GALLERY_PATH = '/net/per920a/export/das14a/satoh-lab/wangz/person_reid/dataset/Market-1501-v15.09.15/bounding_box_test/'
-FEATURES_PATH = '/net/per920a/export/das14a/satoh-lab/wangz/person_reid/src/deep-person-reid-master/features/'
+QUERY_PATH = 'query/'
+GALLERY_PATH = 'bounding_box_test/'
+FEATURES_PATH = 'features/'
 
 MAX_IMAGE_NUM = 100
 
@@ -152,11 +152,11 @@ class dataProcessor(object):
 		d = json.loads(req)
 		filePath = QUERY_PATH
 		featurePath = 'mobilenet_xent_market1501.pth.tar.qf.npy'
-		firstPath = QUERY_PATH
+		firstPath = '/query/'
 		if d['type'] == 'gallery':
 			filePath = GALLERY_PATH
 			featurePath = 'mobilenet_xent_market1501.pth.tar.gf.npy'
-			firstPath = GALLERY_PATH
+			firstPath = '/' + GALLERY_PATH
 		
 		filesNameList = listdir(filePath)
 		filesNameList.sort()
@@ -214,7 +214,7 @@ class dataProcessor(object):
 				if len(nl) > 1:
 					if nl[0] not in personDict:
 						personDict[nl[0]] = 0
-						res[QUERY_PATH + oneFile] = k
+						res['/query/' + oneFile] = k
 						if len(res) > MAX_IMAGE_NUM:
 							break
 				k += 1
@@ -230,7 +230,7 @@ class dataProcessor(object):
 				nl = oneFile.split('_')
 				if len(nl) > 1:
 					if nl[0] == req['data']:
-						res['query'][QUERY_PATH + oneFile] = k
+						res['query']['/query/' + oneFile] = k
 				k += 1
 
 			galleryList = listdir(GALLERY_PATH)
@@ -267,7 +267,7 @@ def getDistMatrix():
 	dp = dataProcessor()
 	res = {}
 	featurePath = 'mobilenet_xent_market1501.pth.tar.gf.npy'
-	filesNameList = listdir(GALLERY_PATH)
+	filesNameList = listdir('../'+GALLERY_PATH)
 	filesNameList.sort()
 	temp = []
 	dataArr = dp.loadNumData(featurePath)
