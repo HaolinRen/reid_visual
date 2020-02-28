@@ -7,5 +7,9 @@ $(function() {
   	setTimeout(function(){
   		graphBuilder.init();
   	}, 2000)
-  	graphSidebar.init()
+  	graphSidebar.init();
+
+  	map3D.createScene()
+
+  	$('.menu .item').tab();
 });

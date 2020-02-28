@@ -1,0 +1,7 @@
+#map3d {
+	height: auto;
+}
+
+#map3d canvas {
+	display: block
+}
