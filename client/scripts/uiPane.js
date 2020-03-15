@@ -328,6 +328,8 @@ var imageQuery = {
                     if (timeFeature.testTime(t)) {
                         continue
                     }
+                    map3D.addSprite(oneImage)
+
                     temp += '<img class="ui bordered image queryImage" src="' + oneImage + '">'
                 }
                 let jTemp = $(temp)

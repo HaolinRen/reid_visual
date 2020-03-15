@@ -42,10 +42,13 @@ class myHandler(BaseHTTPRequestHandler):
 			elif self.path.endswith(".js"):
 				mimetype='application/javascript'
 				sendReply = True
+
+			elif self.path.endswith(".json"):
+				mimetype='application/json'
+				sendReply = True
 			elif self.path.endswith(".css"):
 				mimetype='text/css'
 				sendReply = True
-
 			elif self.path.endswith(".eot"):
 				mimetype = 'application/vnd.ms-fontobject'
 				sendReply = True
@@ -57,6 +60,12 @@ class myHandler(BaseHTTPRequestHandler):
 				sendReply = True
 			elif self.path.endswith(".ttf"):
 				mimetype = 'application/font-sfnt'
+				sendReply = True
+			elif self.path.endswith(".mtl"):
+				mimetype = 'application/mtl'
+				sendReply = True
+			elif self.path.endswith(".obj"):
+				mimetype = 'application/obj'
 				sendReply = True
 			elif self.path.endswith(".woff"):
 				mimetype = 'application/font-woff'
