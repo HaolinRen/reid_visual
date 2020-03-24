@@ -7,7 +7,7 @@ from server.dataProcessor import dataProcessor
 
 import cgi
 
-PORT_NUMBER = 800
+PORT_NUMBER = 80
 
 class myHandler(BaseHTTPRequestHandler):
 

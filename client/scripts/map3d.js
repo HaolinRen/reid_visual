@@ -7,11 +7,67 @@ var map3D = function() {
     var height = width>>1;
     ele.width(width)
 
-    const BOTTOM = -30;
-    const LEFT = -100;
+    const BOTTOM = -100;
+    const LEFT = -300;
+    const RIGHT = 300;
+
+    const WIDTH = 0;
+    const DEPTH = 600;
+
 
     const COLOR_GRIS = '#C0C0C0';
 
+    const circleRadius = 80;
+
+    const circle0 = {
+        x0: -200,
+        y0: -200,
+        x1: -280,
+        y1: -280,
+        color: '#FFFFFF'
+    }
+
+    const circle1 = {
+        x0: 50,
+        y0: -200,
+        x1: -130,
+        y1: -280,
+        color: '#FFFFFF'
+    }
+
+    const circle2 = {
+        x0: -200,
+        y0: 50,
+        x1: -280,
+        y1: -30,
+        color: '#FFFFFF'
+    }
+
+    const circle3 = {
+        x0: 20,
+        y0: 30,
+        x1: -60,
+        y1: -50,
+        color: '#FFFFFF'
+    }
+
+    const circle4 = {
+        x0: 250,
+        y0: -50,
+        x1: 170,
+        y1: -130,
+        color: '#FFFFFF'
+    }
+
+    const circle5 = {
+        x0: 180,
+        y0: 180,
+        x1: 100,
+        y1: 100,
+        color: '#FFFFFF'
+    }
+
+    let circleList = [circle0, circle1, circle2, circle3, circle4, circle5]
     var scene = new THREE.Scene();
 
     scene.background = new THREE.Color( '#FFFFFF' );
@@ -26,6 +82,9 @@ var map3D = function() {
 
     var group = new THREE.Group();
     scene.add( group )
+
+    var nodesGroup = new THREE.Group();
+    scene.add(nodesGroup)
 
     var controls = new THREE.OrbitControls( camera, renderer.domElement );
     controls.enableDamping = true;
@@ -47,19 +106,6 @@ var map3D = function() {
 
     }
 
-    function addExtrudedShape( shape, color, depth=8, x=0, y=0, z=0, rx=0, ry=0, rz=0, s=1 ) {
-        // extruded shape
-        var extrudeSettings = { depth: depth, bevelEnabled: true, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
-
-        var geometry = new THREE.ExtrudeBufferGeometry( shape, extrudeSettings );
-
-        var mesh = new THREE.Mesh( geometry, new THREE.MeshPhongMaterial( { color: color } ) );
-        mesh.position.set( x, y, z );
-        mesh.rotation.set( rx, ry, rz );
-        mesh.scale.set( s, s, s );
-        group.add( mesh );
-
-    }
 
     function addLine(shape, color, x, y, z, rx, ry, rz) {
         var points = shape.getPoints();
@@ -68,50 +114,6 @@ var map3D = function() {
         line.position.set( x, y, z );
         line.rotation.set( rx, ry, rz );
         group.add( line );
-    }
-
-    function addLineShape( shape, color, x, y, z, rx, ry, rz, s ) {
-
-        shape.autoClose = true;
-
-        var points = shape.getPoints();
-        var spacedPoints = shape.getSpacedPoints( 50 );
-
-        var geometryPoints = new THREE.BufferGeometry().setFromPoints( points );
-        var geometrySpacedPoints = new THREE.BufferGeometry().setFromPoints( spacedPoints );
-
-        // solid line
-
-        var line = new THREE.Line( geometryPoints, new THREE.LineBasicMaterial( { color: color } ) );
-        line.position.set( x, y, z - 25 );
-        line.rotation.set( rx, ry, rz );
-        line.scale.set( s, s, s );
-        group.add( line );
-
-        // line from equidistance sampled points
-
-        var line = new THREE.Line( geometrySpacedPoints, new THREE.LineBasicMaterial( { color: color } ) );
-        line.position.set( x, y, z + 25 );
-        line.rotation.set( rx, ry, rz );
-        line.scale.set( s, s, s );
-        group.add( line );
-
-        // vertices from real points
-
-        var particles = new THREE.Points( geometryPoints, new THREE.PointsMaterial( { color: color, size: 4 } ) );
-        particles.position.set( x, y, z + 75 );
-        particles.rotation.set( rx, ry, rz );
-        particles.scale.set( s, s, s );
-        group.add( particles );
-
-        // equidistance sampled points
-
-        var particles = new THREE.Points( geometrySpacedPoints, new THREE.PointsMaterial( { color: color, size: 4 } ) );
-        particles.position.set( x, y, z + 125 );
-        particles.rotation.set( rx, ry, rz );
-        particles.scale.set( s, s, s );
-        group.add( particles );
-
     }
 
     function addCurve(vp, color) {
@@ -182,6 +184,40 @@ var map3D = function() {
         makeInstance(bbw, bbd, bbh, COLOR_GRIS, startX, BOTTOM+bbd/2, startY)
     }
 
+    function addPositionCircle(left, depth) {
+        
+        let r = -90 * Math.PI / 180
+        var circleShape = new THREE.Shape()
+            .moveTo( 0, circleRadius )
+            .quadraticCurveTo( circleRadius, circleRadius, circleRadius, 0 )
+            .quadraticCurveTo( circleRadius, - circleRadius, 0, - circleRadius )
+            .quadraticCurveTo( - circleRadius, - circleRadius, - circleRadius, 0 )
+            .quadraticCurveTo( - circleRadius, circleRadius, 0, circleRadius );
+
+        circleShape.autoClose = true;
+
+        var spacedPoints = circleShape.getSpacedPoints( 80 );
+
+        var geometrySpacedPoints = new THREE.BufferGeometry().setFromPoints( spacedPoints );
+
+
+        var particles = new THREE.Points( geometrySpacedPoints, new THREE.PointsMaterial( { color: '#E52B50', size: 2 } ) );
+        particles.position.set( left, BOTTOM, depth );
+        particles.rotation.set( r, 0, 0 );
+        // particles.scale.set( r, 0, 1 );
+        group.add( particles );
+
+    }
+
+    function addCircles() {
+        addPositionCircle(circle0.x0, circle0.y0)
+        addPositionCircle(circle1.x0, circle1.y0)
+        addPositionCircle(circle2.x0, circle2.y0)
+        addPositionCircle(circle3.x0, circle3.y0)
+        addPositionCircle(circle4.x0, circle4.y0)
+        addPositionCircle(circle5.x0, circle5.y0)
+    }
+
     function createGarden(z0, z1, r) {
         let points = []
 
@@ -205,7 +241,7 @@ var map3D = function() {
         }
 
         addCurve(vp, '#A9A9A9');
-        addFlatShape(vp, '#F5F5F5', xp2, BOTTOM, 0, r, 0, 0);
+        // addFlatShape(vp, '#F5F5F5', xp2, BOTTOM, 0, r, 0, 0);
     }
 
     function createRandom() {
@@ -216,7 +252,8 @@ var map3D = function() {
         let startPosi = LEFT - width0 * xNum;
         let startZposi = LEFT * 3;
         let endZposi = startZposi;
-        let r = -90 * Math.PI / 180
+        let r = -90 * Math.PI / 180;
+
         for (let i = 0; i < xNum; i += 1) {
             let tp = startZposi
             for (let j = 0; j < zNum; j += 1) {
@@ -246,7 +283,7 @@ var map3D = function() {
     }
 
     function addSprite(imgPath) {
-        console.log(imgPath)
+
         var textured = new THREE.TextureLoader().load(imgPath);
         var spriteMaterial = new THREE.SpriteMaterial({
         // color: 0xffffff,
@@ -264,21 +301,89 @@ var map3D = function() {
         scene.add(sprite);
 
     }
+
+
+    function addPoint(x, y, z, color) {
+        
+        let material = new THREE.MeshPhongMaterial({
+            color: color, 
+            opacity: 0.95,
+            transparent: true,
+        })
+        let object = new THREE.Mesh( new THREE.SphereBufferGeometry( 40, 40, 40 ), material );
+        object.position.set(x, y, z);
+        object.scale.set(0.1, 0.1, 0.1)
+        nodesGroup.add( object );
+    }
+
+    function clearNodes() {
+        scene.remove(nodesGroup)
+        nodesGroup = new THREE.Group();
+        scene.add(nodesGroup)
+    }
+
     return {
         createScene : function() {
             
-            addLight(1, 1, 1, 0.4)
+            addLight(1, 1, 1, 0.5)
             addLight(0, 1, -1, 0.4)
 
-            var ambientLight = new THREE.AmbientLight( 0xcccccc, 0.56 );
+            var ambientLight = new THREE.AmbientLight( 0xcccccc, 0.4 );
             scene.add( ambientLight );
 
-            // var helper = new THREE.GridHelper( 200, 4 );
-            // helper.position.set(0, BOTTOM, 0)
-            // group.add( helper );
-            createRandom();
+            var helper = new THREE.GridHelper( 600, 100 );
+            helper.material.opacity = 0.25;
+            helper.material.transparent = true;
+            helper.position.set(0, BOTTOM, 0)
+            group.add( helper );
+            // createRandom();
 
+            addCircles()
+            // createParticles()
             animate()
+        },
+        addNodes: function(graphWidth, graphHeight, d) {
+            "0315_c3s1_071117_02.jpg"
+            clearNodes()
+            let maxX = 0;
+            let maxY = 0;
+
+            let minTime = 0;
+            let maxTime = 0;
+            let timeArr = []
+            for (let n of d.innerNodes) {
+                if (n.x > maxX) {
+                    maxX = n.x
+                }
+                if (n.y > maxY) {
+                    maxY = n.y
+                }
+                let timeinfo = +n.imageID.split('_')[2];
+                timeArr.push(timeinfo);
+            }
+            timeArr.sort();
+            let timeDict = {}
+            let lg = 200 / timeArr.length;
+            let i = 0;
+            for (let one of timeArr) {
+                timeDict[one] = i * lg;
+                i += 1
+            }
+            for (let n of d.innerNodes) {
+                let info = n.imageID.split('_');
+                let color = n.color;
+
+                let camerID = +info[1].substring(1, 2) - 1;
+                // let tinfo = info[1].substring(3, 4) + info[2];
+                let tinfo = +info[2];
+
+                let circleCeur = circleList[camerID];
+
+                let x = circleCeur.x1 + n.x / maxX * circleRadius * 2;
+                let y = circleCeur.y1 + n.y / maxY * circleRadius * 2;
+                
+                addPoint(x, timeDict[tinfo], y, color)
+            }
         },
         addSprite: addSprite
     }

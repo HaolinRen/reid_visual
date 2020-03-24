@@ -33,6 +33,10 @@ body {
     width: 92%
 }
 
+#graphSeg {
+  height: 900px;
+}
+
 .rightImage {
   border: green solid 2px;
   margin: 2px;
@@ -138,6 +142,11 @@ input[type=range]:focus::-ms-fill-upper {
   margin-left: 0 !important
 }
 
+#scrollList {
+  max-height: 900px;
+  overflow: auto;
+}
+
 #gboard {
     height: 236px;
     overflow: auto;
@@ -148,13 +157,18 @@ input[type=range]:focus::-ms-fill-upper {
   width: 100%;
 }
 
+#map3d {
+  margin-top: 10px
+}
+
+
 #selectBoard {
   position: absolute;
   z-index: 10;
   display: none;
 }
 
-.ui.horizontal.list:not(.celled)>.item:first-child {
+.ui.horizontal .list:not(.celled)>.item:first-child {
   margin-left: 1em!important
 }
 

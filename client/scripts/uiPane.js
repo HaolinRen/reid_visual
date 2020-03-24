@@ -226,6 +226,8 @@ var graphBuilder = {
                     break
                 }
             }
+
+            map3D.addNodes(width, height, res)
             let jele = $(queryTemp)
             jele.css('margin_left', '1em')
             simSegment.board.html(jele)
@@ -328,7 +330,7 @@ var imageQuery = {
                     if (timeFeature.testTime(t)) {
                         continue
                     }
-                    map3D.addSprite(oneImage)
+                    // map3D.addSprite(oneImage)
 
                     temp += '<img class="ui bordered image queryImage" src="' + oneImage + '">'
                 }

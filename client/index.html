@@ -102,123 +102,115 @@
                 </div>
             </div>
         </div>
-        <div class="ui secondary menu">
-            <a class="item" data-tab="first">Similarity Network</a>
-            <a class="item active" data-tab="second">3D Map</a>
-        </div>
-        <div class="ui tab" data-tab="first">
-            <div class="ui segment">
-                <input type="range" name="dist" min="1" max="100" value="15" id="rgbar">
-                <label class="ui left pointing large label" id="rglabel"> &lt; 0.15</label>
-            </div>
-            <div class="ui grid">
-                <div class="ten wide column">
-                    <div class="ui top attached menu">
+        
+        <div class="ui grid">
+            <div class="ten wide column">
+                <div class="ui top attached menu">
+                    <div class="item">
+                        Network
+                    </div>
+                    <a class="item" id="selector">
+                        Select
+                    </a>
+                    <div class="item" id="graphinfo">
+                    </div>
+                    <div class="right menu">
+                        <a class="ui item" id="sidebarToggle">Setting</a>
+                    </div>
+                </div>
+                <div class="ui bottom attached segment pushable" id="graphSeg">
+                    <div class="ui right vertical menu sidebar" id="graphSidebar">
                         <div class="item">
-                            Network
+                            <select class="ui dropdown" id="graphLayout">
+                                <option active>FM^3 (OGDF)</option>
+                                <option>Balloon (OGDF)</option>
+                                <option>Bubble Tree</option>
+                                <option>Circular (OGDF)</option>
+                            </select>
                         </div>
-                        <a class="item" id="selector">
-                            Select
-                        </a>
-                        <a class="item" id="showGraph">Show</a>
-                        <div class="item" id="graphinfo">
+                        <div class="item">
+                            <div class="ui checkbox cameracheckbox">
+                                <input type="checkbox" value="c1">
+                                <label>Camera 1</label>
+                            </div>
+                            <div class="ui checkbox cameracheckbox">
+                                <input type="checkbox" value="c2">
+                                <label>Camera 2</label>
+                            </div>
+                            <div class="ui checkbox cameracheckbox">
+                                <input type="checkbox" value="c3">
+                                <label>Camera 3</label>
+                            </div>
+                            <div class="ui checkbox cameracheckbox">
+                                <input type="checkbox" value="c4">
+                                <label>Camera 4</label>
+                            </div>
+                            <div class="ui checkbox cameracheckbox">
+                                <input type="checkbox" value="c5">
+                                <label>Camera 5</label>
+                            </div>
+                            <div class="ui checkbox cameracheckbox">
+                                <input type="checkbox" value="c6">
+                                <label>Camera 6</label>
+                            </div>
+                            <div class="ui checkbox cameracheckbox">
+                                <input type="checkbox" value="xc7">
+                                <label>Different</label>
+                            </div>
                         </div>
-                        <div class="right menu">
-                            <a class="ui item" id="sidebarToggle">Setting</a>
+                        <div class="item">
+                            <div class="ui checkbox videocheckbox">
+                                <input type="checkbox" value="s1">
+                                <label>S1</label>
+                            </div>
+                            <div class="ui checkbox videocheckbox">
+                                <input type="checkbox" value="s2">
+                                <label>S2</label>
+                            </div>
+                            <div class="ui checkbox videocheckbox">
+                                <input type="checkbox" value="s3">
+                                <label>S3</label>
+                            </div>
+                            <div class="ui checkbox videocheckbox">
+                                <input type="checkbox" value="s4">
+                                <label>S4</label>
+                            </div>
+                            <div class="ui checkbox videocheckbox">
+                                <input type="checkbox" value="s5">
+                                <label>S5</label>
+                            </div>
+                            <div class="ui checkbox videocheckbox">
+                                <input type="checkbox" value="xs6">
+                                <label>Different</label>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <input type="range" name="dist" min="1" max="100" value="15" id="rgbar">
+                            <label class="ui left pointing label" id="rglabel"> &lt; 0.15</label>
+                        </div>
+                        <div class="item">
+                            <button class="ui button" id="showGraph">Show</button>
                         </div>
                     </div>
-                    <div class="ui bottom attached segment pushable" id="graphSeg">
-                        <div class="ui right vertical menu sidebar" id="graphSidebar">
-                            <div class="item">
-                                <select class="ui dropdown" id="graphLayout">
-                                    <option active>FM^3 (OGDF)</option>
-                                    <option>Balloon (OGDF)</option>
-                                    <option>Bubble Tree</option>
-                                    <option>Circular (OGDF)</option>
-                                </select>
-                            </div>
-                            <div class="item">
-                                <div class="ui checkbox cameracheckbox">
-                                    <input type="checkbox" value="c1">
-                                    <label>Camera 1</label>
-                                </div>
-                                <div class="ui checkbox cameracheckbox">
-                                    <input type="checkbox" value="c2">
-                                    <label>Camera 2</label>
-                                </div>
-                                <div class="ui checkbox cameracheckbox">
-                                    <input type="checkbox" value="c3">
-                                    <label>Camera 3</label>
-                                </div>
-                                <div class="ui checkbox cameracheckbox">
-                                    <input type="checkbox" value="c4">
-                                    <label>Camera 4</label>
-                                </div>
-                                <div class="ui checkbox cameracheckbox">
-                                    <input type="checkbox" value="c5">
-                                    <label>Camera 5</label>
-                                </div>
-                                <div class="ui checkbox cameracheckbox">
-                                    <input type="checkbox" value="c6">
-                                    <label>Camera 6</label>
-                                </div>
-                                <div class="ui checkbox cameracheckbox">
-                                    <input type="checkbox" value="xc7">
-                                    <label>Different</label>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="ui checkbox videocheckbox">
-                                    <input type="checkbox" value="s1">
-                                    <label>S1</label>
-                                </div>
-                                <div class="ui checkbox videocheckbox">
-                                    <input type="checkbox" value="s2">
-                                    <label>S2</label>
-                                </div>
-                                <div class="ui checkbox videocheckbox">
-                                    <input type="checkbox" value="s3">
-                                    <label>S3</label>
-                                </div>
-                                <div class="ui checkbox videocheckbox">
-                                    <input type="checkbox" value="s4">
-                                    <label>S4</label>
-                                </div>
-                                <div class="ui checkbox videocheckbox">
-                                    <input type="checkbox" value="s5">
-                                    <label>S5</label>
-                                </div>
-                                <div class="ui checkbox videocheckbox">
-                                    <input type="checkbox" value="xs6">
-                                    <label>Different</label>
-                                </div>
-                            </div>
+                    <div class="pusher">
+                        <div class="board" id="selectBoard">
                         </div>
-                        <div class="pusher">
-                            <div class="board" id="selectBoard">
-                            </div>
-                            <div class="board" id="graphBoard">
-                            </div>
-                            
+                        <div class="board" id="graphBoard">
                         </div>
                     </div>
                 </div>
-                <div class="six wide column">                    
-                    <div class="ui segment">
-                        <div class="ui horizontal list" id="distboard">
-                        </div>
-
+            </div>
+            <div class="six wide column">                    
+                <div class="ui segment" id="scrollList">
+                    <div class="ui horizontal list" id="distboard">
                     </div>
                 </div>
             </div>
         </div>
-        <div class="ui tab active" data-tab="second">
-            <div class="ui segment" id="map3d">
-                
-            </div>
+        <div class="ui segment" id="map3d">  
         </div>
+        
     </div>
-    
     <div class="ui longer modal">
         <div class="header">Check the terms:</div>
         <div class="scrolling content">
